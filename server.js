@@ -4,7 +4,7 @@ require("dotenv").config();
 const productRouter = require("./router/productRouter"); // corrected name
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRoutes");
-const userRouter = require("./router/userRouter"); // corrected name
+const userRouter = require("./router/useRouter"); // corrected name
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
