@@ -21,6 +21,10 @@ mongoose.connect(process.env.mongodb_url).then(() => {
 })
 
 
+app.get("/", (req, res) => {
+  res.send("Backend API is running...");
+});
+
 app.use(producRouter)
 app.use(customerRouter)
 app.use(orderRouter)
