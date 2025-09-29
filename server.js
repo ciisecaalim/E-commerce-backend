@@ -12,7 +12,10 @@ const app = express()
 
 app.use(cors())
 
-const port = process.env.port || 5000
+// const port = process.env.port || 5000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 app.use(express.json())
  
 
