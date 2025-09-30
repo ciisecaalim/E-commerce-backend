@@ -12,18 +12,7 @@ const cors = require("cors");
 const app = express();
 
  
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
-}));
-
-// ✅ Preflight handler
-app.options("*", cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
-}));
+ 
 
 app.use(express.json());
 
