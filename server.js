@@ -2,21 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const productRouter = require("./router/productRouter");
+const producRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRoutes");
-const userRouter = require("./router/userRouter"); // fixed typo
+const userRouter = require("./router/useRouter");
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
 const app = express();
 
-// ✅ CORS Config
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://e-commerce-frontend-six-rho.vercel.app"
-];
-
+ 
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -34,19 +29,16 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("MongoDB connected.."))
   .catch(err => console.error("MongoDB connection error:", err));
 
-// ✅ Mount routers with proper paths
-app.use("/products", productRouter);
-app.use("/customers", customerRouter);
-app.use("/orders", orderRouter);
-app.use("/users", userRouter);
-app.use("/admin", adminRouter);
+app.use(producRouter);
+app.use(customerRouter);
+app.use(orderRouter);
+app.use(userRouter);
+app.use(adminRouter);
 
-// ✅ Static files
 app.use("/allImg", express.static("document")); 
 
 app.listen(port, () => {
