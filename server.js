@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const producRouter = require("./router/productRouter");
+const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRoutes");
-const userRouter = require("./router/useRouter");
+const userRouter = require("./router/userRouter"); // fixed typo
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
@@ -34,16 +34,19 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
+// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("MongoDB connected.."))
   .catch(err => console.error("MongoDB connection error:", err));
 
-app.use(producRouter);
-app.use(customerRouter);
-app.use(orderRouter);
-app.use(userRouter);
-app.use(adminRouter);
+// ✅ Mount routers with proper paths
+app.use("/products", productRouter);
+app.use("/customers", customerRouter);
+app.use("/orders", orderRouter);
+app.use("/users", userRouter);
+app.use("/admin", adminRouter);
 
+// ✅ Static files
 app.use("/allImg", express.static("document")); 
 
 app.listen(port, () => {
