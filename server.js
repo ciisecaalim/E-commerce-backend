@@ -5,7 +5,7 @@ require("dotenv").config();
 const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRoutes");
-const userRouter = require("./router/useRouter"); 
+const userRouter = require("./router/userRouter"); // Hubi file-kan inuu jiro oo sax ah
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
@@ -31,6 +31,7 @@ app.options("*", cors({
   credentials: true
 }));
 
+// ✅ JSON parser
 app.use(express.json());
 
 const port = process.env.PORT || 5000;
@@ -47,7 +48,7 @@ app.use("/orders", orderRouter);
 app.use("/users", userRouter);
 app.use("/admin", adminRouter);
 
-// ✅ Static files
+// ✅ Static folder for images
 app.use("/allImg", express.static("document"));
 
 app.listen(port, () => {
