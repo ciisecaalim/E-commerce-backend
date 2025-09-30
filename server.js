@@ -12,13 +12,25 @@ const app = express()
 
 app.use(cors())
 
-const port = process.env.port || 5000
+const port = process.env.PORT || 5000
 app.use(express.json())
  
 
-mongoose.connect(process.env.mongodb_url).then(() => {
+mongoose.connect(process.env.MONGODB_URL).then(() => {
       console.log("connected..")
 })
+
+
+const allowedOrigins = [
+  "http://localhost:5173", // dev
+  "https://e-commerce-frontend-six-rho.vercel.app" // production
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 
 app.use(producRouter)
