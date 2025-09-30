@@ -27,6 +27,16 @@ app.use(cors({
   credentials: true
 }));
 
+
+const cors = require("cors");
+
+app.use(cors({
+  origin: ["https://e-commerce-frontend-six-rho.vercel.app"], // frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+
 app.use(producRouter)
 app.use(customerRouter)
 app.use(orderRouter)
