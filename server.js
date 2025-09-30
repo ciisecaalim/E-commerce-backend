@@ -21,6 +21,12 @@ mongoose.connect(process.env.mongodb_url).then(() => {
 })
 
 
+app.use(cors({
+  origin: ["https://your-frontend-domain.onrender.com"], // halkaas ku qor frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(producRouter)
 app.use(customerRouter)
 app.use(orderRouter)
