@@ -11,39 +11,41 @@ const cors = require("cors");
 
 const app = express();
 
-// ✅ CORS config
+// ✅ CORS Config
 const allowedOrigins = [
-  "http://localhost:5173", // dev
-  "https://e-commerce-frontend-six-rho.vercel.app" // production frontend
+  "http://localhost:5173",
+  "https://e-commerce-frontend-six-rho.vercel.app"
 ];
 
 app.use(cors({
   origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
+
+// ✅ Preflight handler
+app.options("*", cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
 
 app.use(express.json());
 
-// ✅ Port (Render will inject PORT)
 const port = process.env.PORT || 5000;
 
-// ✅ MongoDB connection
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("MongoDB connected.."))
   .catch(err => console.error("MongoDB connection error:", err));
 
-// ✅ Routes
 app.use(producRouter);
 app.use(customerRouter);
 app.use(orderRouter);
 app.use(userRouter);
 app.use(adminRouter);
 
-// ✅ Static files
 app.use("/allImg", express.static("document")); 
 
-// ✅ Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
