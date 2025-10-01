@@ -5,7 +5,7 @@ require("dotenv").config();
 const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRoutes");
-const userRouter = require("./router/userRouter"); // Hubi file-kan inuu jiro oo sax ah
+const userRouter = require("./router/useRouter"); // Hubi file-kan inuu jiro oo sax ah
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
