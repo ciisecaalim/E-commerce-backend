@@ -1,31 +1,50 @@
-const express = require("express")
-const mongoose = require("mongoose")
-require("dotenv").config()
-const producRouter = require("./router/productRouter")
-const customerRouter = require("./router/customerRouter")
-const orderRouter = require("./router/orderRoutes")
-const userRouter = require("./router/useRouter")
-const adminRouter = require("./router/adminRouter")
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const productRouter = require("./router/productRouter");
+const customerRouter = require("./router/customerRouter");
+const orderRouter = require("./router/orderRouter"); // sax magac
+const userRouter = require("./router/userRouter");   // sax magac
+const adminRouter = require("./router/adminRouter");
+const cors = require("cors");
 
-const app = express()
+const app = express();
 
-app.use(cors())
+// ✅ CORS config
+const allowedOrigins = [
+  "https://e-commerce-frontend-g5et.onrender.com", // frontend live
+  "http://localhost:3000" // local dev
+];
 
-const port = process.env.PORT || 5000
-app.use(express.json())
- 
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
-mongoose.connect(process.env.MONGODB_URL).then(() => {
-      console.log("connected..")
-})
+app.use(express.json());
 
+// ✅ MongoDB
+mongoose.connect(process.env.MONGODB_URL)
+  .then(() => console.log("MongoDB connected..."))
+  .catch(err => console.error("MongoDB connection error:", err));
 
-app.use(producRouter)
-app.use(customerRouter)
-app.use(orderRouter)
-app.use(userRouter)
-app.use(adminRouter)
-app.use("/allImg", express.static("document")); // Ensure the directory name is correct
+// ✅ Routes
+app.use(productRouter);
+app.use(customerRouter);
+app.use(orderRouter);
+app.use(userRouter);
+app.use(adminRouter);
 
-app.listen(port, () => { console.log(`server is running on port ${port}`)})
+// ✅ Static folder
+app.use("/allImg", express.static("document"));
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
