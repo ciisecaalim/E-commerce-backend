@@ -6,7 +6,7 @@ require("dotenv").config();
 const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRouter");
-const userRouter = require("./router/userRouter");
+const userRouter = require("./router/useRouter");
 const adminRouter = require("./router/adminRouter");
 
 const app = express();
