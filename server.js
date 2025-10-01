@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
-const orderRouter = require("./router/orderRouter"); // sax magac
+const orderRouter = require("./router/orderRoutes"); // sax magac
 const userRouter = require("./router/useRouter");   // sax magac
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
