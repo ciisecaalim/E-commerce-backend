@@ -4,7 +4,7 @@ require("dotenv").config();
 const productRouter = require("./router/productRouter");
 const customerRouter = require("./router/customerRouter");
 const orderRouter = require("./router/orderRouter"); // sax magac
-const userRouter = require("./router/userRouter");   // sax magac
+const userRouter = require("./router/useRouter");   // sax magac
 const adminRouter = require("./router/adminRouter");
 const cors = require("cors");
 
