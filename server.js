@@ -13,7 +13,7 @@ const app = express();
 // ✅ CORS config
 const allowedOrigins = [
   "https://e-commerce-frontend-g5et.onrender.com", // frontend live
-  "mongodb+srv://ciisecaalim63_db_user:qfVsPNvGPptcsug8@cluster0.focmlaj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" // local dev
+  
 ];
 
 app.use(cors({
