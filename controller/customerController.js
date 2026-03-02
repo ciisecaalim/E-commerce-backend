@@ -12,7 +12,7 @@ const createCustomer = async (req, res) => {
         const checkEmail = await customerModel.findOne({email})
 
         if(checkEmail){
-            res.status(500).send({error : "this email already register"})
+            return res.status(500).send({error : "this email already register"})
         }
 
         //hash password
@@ -53,7 +53,7 @@ const cutomerLgin = async (req, res) => {
         const checkEmail = await customerModel.findOne({email})
 
         if(!checkEmail){
-            res.status(500).send({error : "invalid Email"})
+            return res.status(500).send({error : "invalid Email"})
         }
 
 

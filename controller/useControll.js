@@ -15,10 +15,16 @@ const userLogin = async (req, res) => {
     });
 
     if (loginUser) {
-        res.send("success login");
+        res.json({
+            message: "success login",
+            user: {
+                id: loginUser._id,
+                userName: loginUser.userName
+            }
+        });
     } else {
-        res.send({
-            error: "incorrectpassword or username"
+        res.status(400).json({
+            error: "incorrect password or username"
         });
     }
 }
